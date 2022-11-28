@@ -170,12 +170,12 @@ open class Localization: Bundle {
     private static let kLocalizationLanguageSelectionKey = "kLocalizationLanguageSelectionKey"
     
     /// System languages
-    open static var systemPreferredLanguages: [String] {
+    public static var systemPreferredLanguages: [String] {
         return Locale.preferredLanguages
     }
     
     /// Selecc language
-    open static var preferredLanguage: String {
+    public static var preferredLanguage: String {
         get{
             return UserDefaults.standard.string(forKey: Localization.kLocalizationLanguageSelectionKey) ?? NSLocale.preferredLanguages[0]
         }
@@ -197,7 +197,7 @@ open class Localization: Bundle {
         }
     }
     
-    open static var bundleForLanguage: (_ language: String?) -> Bundle? = { language in
+    public static var bundleForLanguage: (_ language: String?) -> Bundle? = { language in
         if let path = Bundle.main.path(forResource: language ?? Localization.preferredLanguage, ofType: lproj),
             let bundle = Bundle(path: path) {
             return bundle
@@ -205,14 +205,14 @@ open class Localization: Bundle {
         return nil
     }
     
-    open static func startObserve(with observer: NSObject, selector aSelector: Selector) {
+    public static func startObserve(with observer: NSObject, selector aSelector: Selector) {
         NotificationCenter.default.addObserver(observer,
                                                selector: aSelector,
                                                name: LocalizationLanguageDidChangeNotification,
                                                object: nil)
     }
     
-    open static func stopObserve(with observer: NSObject) {
+    public static func stopObserve(with observer: NSObject) {
         NotificationCenter.default.removeObserver(observer,
                                                   name: LocalizationLanguageDidChangeNotification,
                                                   object: nil)
