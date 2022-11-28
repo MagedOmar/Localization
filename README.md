@@ -33,7 +33,7 @@
 
 ```ruby
 use_frameworks!
-pod 'Localization'
+pod 'Localization', :git => 'https://github.com/MagedOmar/Localization.git', :branch => 'master'
 ```
 
 ## Contribution
